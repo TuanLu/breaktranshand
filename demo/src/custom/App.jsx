@@ -23,6 +23,9 @@ export default class App extends React.Component {
   }
 
   handleSelectClick = (e, behindHandler) => {
+    debugger;
+    console.log('clicked')
+    return false;
     var domElem = this.elementFromPoint(e.clientX, e.clientY)
 
     if (domElem && domElem._handlerDemo) {
@@ -55,7 +58,7 @@ export default class App extends React.Component {
   }
 
   handleChange = (change) => {
-    console.log('change event Tuan:', change)
+    console.log('change event:', change)
 
     var { currDomElem } = this.state,
         transform = currDomElem._handlerTransform
@@ -83,6 +86,7 @@ export default class App extends React.Component {
   render() {
     var {currDomElem, grabEvent} = this.state
 
+
     const INIT_TRANSFORM = {
       tx: 0, ty: 0,
       sx: 1, sy: 1,
@@ -90,7 +94,6 @@ export default class App extends React.Component {
       ox: 0.5, oy: 0.5,
     }
     if (currDomElem) {
-
       return (
         <div>
           <CSSTranshand

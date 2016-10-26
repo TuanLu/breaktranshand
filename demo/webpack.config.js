@@ -33,5 +33,6 @@ module.exports = {
         loader: 'file?name=[path][name].[ext]&context=' + path.join(__dirname, '/src')
       }
     ]
-  }
+  },
+  devtool: 'inline-source-map'
 }
