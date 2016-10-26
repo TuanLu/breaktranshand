@@ -15,6 +15,15 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    this.myDom = document.querySelector("#myDom");
+    console.info(this.myDom);
+    this.myDom._handlerDemo = true;
+    this.myDom._handlerTransform = {
+      tx: 0, ty: 0,
+      sx: 1, sy: 1,
+      rz: 0,
+      ox: 0.5, oy: 0.5,
+    };
     window.addEventListener('mousedown', this.handleSelectClick)
   }
 
@@ -23,11 +32,7 @@ export default class App extends React.Component {
   }
 
   handleSelectClick = (e, behindHandler) => {
-    debugger;
-    console.log('clicked')
-    return false;
     var domElem = this.elementFromPoint(e.clientX, e.clientY)
-
     if (domElem && domElem._handlerDemo) {
       this.setState({
         currDomElem: domElem,
@@ -53,22 +58,18 @@ export default class App extends React.Component {
     else {
       get()
     }
-
     return deTarget
   }
 
   handleChange = (change) => {
-    console.log('change event:', change)
-
+    //console.log('change event:', change)
     var { currDomElem } = this.state,
         transform = currDomElem._handlerTransform
-
     assign(transform, change)
 
     currDomElem.style.transform = this.generateCssTransform(transform)
     currDomElem.style.transformOrigin = `${transform.ox*100}% ${transform.oy*100}%`
-
-    this.forceUpdate()
+    this.forceUpdate();
   }
 
   generateCssTransform(transform) {
@@ -104,6 +105,7 @@ export default class App extends React.Component {
           onClick = {this.handleSelectBehindHanler}
           grabEvent = {grabEvent}
           {...currDomElem.transhandProps}/>
+
         </div>
       );
     }
