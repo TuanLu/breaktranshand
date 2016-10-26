@@ -1,0 +1,8 @@
+node_modules
+lib
+demo/dist
+browser
+*.log
+.publish
+gulpfile.js
+.DS_Store

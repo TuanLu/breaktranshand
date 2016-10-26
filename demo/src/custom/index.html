@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>transhand demo - custom</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,700,600,300&subset=latin,latin-ext">
+    <style>
+    	html, body {
+    	  background-color: black;
+        transition: background-color 0.4s;
+    	  height: 100%;
+    	  margin: 0;
+        font-family: sans-serif;
+    	}
+      #source{
+        position: fixed;
+        top: 0px;
+        padding-left: 7px;
+      }
+      #source > a {
+        color: #fff;
+        transition: color 0.4s;
+        cursor: pointer;
+      }
+      #stuffs{
+        width: 100%;
+        height: 100%;
+      }
+      #scroll{
+        height: 10%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stuffs"></div>
+    <div id="mount-app"></div>
+    <script src="./index.js"></script>
+  </body>
+</html>
