@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {CSSTranshand} from 'transhand'
+import {CSSTranshand, Transhand} from 'transhand'
 import assign from 'lodash/object/assign'
 var clone = require('lodash/lang/clone')
 
@@ -11,12 +11,17 @@ export default class App extends React.Component {
 
     this.state = {
       currDomElem: undefined,
+      transform: {
+        tx: 0, ty: 0,     //translate in px
+        sx: 1, sy: 1,     //scale
+        rz: 0,            //rotation in radian
+        ox: 0.5, oy: 0.5, //transform origin
+      }
     }
   }
 
   componentDidMount() {
     this.myDom = document.querySelector("#myDom");
-    console.info(this.myDom);
     this.myDom._handlerDemo = true;
     this.myDom._handlerTransform = {
       tx: 0, ty: 0,
@@ -94,23 +99,39 @@ export default class App extends React.Component {
       rz: 0,
       ox: 0.5, oy: 0.5,
     }
+    var myDom = document.querySelector("#myDom");
     if (currDomElem) {
       return (
         <div>
-          <CSSTranshand
+
+          {/*<CSSTranshand
           ref = 'handler'
           deTarget = {currDomElem}
           transform = {currDomElem._handlerTransform}
           onChange = {this.handleChange}
           onClick = {this.handleSelectBehindHanler}
           grabEvent = {grabEvent}
-          {...currDomElem.transhandProps}/>
+          {...currDomElem.transhandProps}/>*/}
 
         </div>
+
       );
     }
     else {
-      return <div hidden={true}/>
+      return (
+        <Transhand
+          deTarget = {myDom}
+          transform = {this.state.transform}
+          rect = {{x: 0, y: 0, w: 100, h: 100}}
+          onChange = {(change) => {
+            var transform = this.state.transform;
+            assign(transform, change);
+            this.setState({
+              transform: transform
+            });
+        }}/>
+      );
+
     }
   }
 }

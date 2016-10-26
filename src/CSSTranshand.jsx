@@ -91,7 +91,6 @@ export default class CSSTranshand extends React.Component {
     }
 
     var {rect} = this.state
-
     return rect ? <Transhand
       {...this.props}
       rect = {rect}
